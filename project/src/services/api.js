@@ -12,7 +12,7 @@ export const bing = async () => {
 
 export const weather = async (location) => {
     try {
-        let response = await axios.get(`${isLocalhost()}http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8`)    
+        let response = await axios.get(`${isLocalhost()}http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8&units=metric`)    
         return response
     } catch(error){
         console.error('Não foi possível acessar a api openweathermap')

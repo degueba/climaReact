@@ -1,0 +1,66 @@
+.prediction {
+    background: #eee;
+    width: calc(100% - 40%);
+    height: 100vh;
+
+    &__title {
+        font-size: 3em;
+        margin: 0;
+        color: #999;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+
+        .icon:before {
+            font-family: 'MeteoconsRegular';
+            font-size: 2em;
+            font-style: normal;
+            margin-right: 40px;
+            color: #ffffff;
+            content: attr(data-icon);
+        }
+    }
+
+    &__list {
+        position: relative;
+        list-style: none;
+        padding: 10px 0;
+        background: #cccccc;
+
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 40px;
+        
+        &-today {
+            background-color: rgba()
+        }
+
+        &-tomorrow {
+        }
+
+        &-aftertomorrow {
+        }
+    }
+
+    &__icon {
+        .icon:before {
+            font-family: 'MeteoconsRegular';
+            font-size: 20em;
+            font-style: normal;
+            color: #ffffff;
+            content: attr(data-icon);
+        }
+    }
+
+    &__info {
+        width: 200px;
+        color: #ffffff;
+        ul {list-style: none; padding-left: 0;}
+    }
+}

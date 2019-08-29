@@ -6,13 +6,18 @@ import { bing, weather, opencage } from '../../services/api';
 // styles
 import './styles.scss';
 
+// Components
+import Prediction from '../../components/Prediction';
+
 class Main extends Component {
     constructor(props){
         super(props)
         
         this.state = {
             backgroundURL: '',
-            coords: {}
+            coords: {},
+            city: '',
+            weatherData: {}
         }
     }  
 
@@ -26,7 +31,21 @@ class Main extends Component {
 
     getCity = async ({...position}) => {
         let response = await opencage({...position});
-        console.log('city-> ',response)
+
+        let {results} = response.data;
+        let city = results[0].components.city; // just get first item on array to get city
+
+        this.setState({city});
+
+        
+        this.getWeather(city);
+    }
+
+    getWeather = async (city) => {
+        let response = await weather(city);
+
+        let weatherData = response.data;
+        this.setState({weatherData})
     }
 
     showPosition = (position) => {        
@@ -55,7 +74,7 @@ class Main extends Component {
     render(){
         return (
             <main className="main" style={{background: `url(${this.state.backgroundURL})`}}>
-                {this.state.coords.length && <>{this.state.coords.latitude}, {this.state.coords.longitude}</>}
+                {Object.keys(this.state.weatherData).length ? <Prediction weather={this.state.weatherData}/> : <div>Carregando...</div>} 
             </main>
         )
     }
