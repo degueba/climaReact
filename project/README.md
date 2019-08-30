@@ -1,11 +1,13 @@
 Em components temos todos os componentes do Projeto
 
+* Components
     * Prediction
        - index.js
        - styles.scss
 
 Em pages temos todas as páginas do Projeto
 
+* Pages
     * Main
        - index.js
        - styles.scss
