@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // services
-import { bing, weather, opencage } from '../../services/api';
+import { bing, weather, opencage, forecast } from '../../services/api';
 
 // styles
 import './styles.scss';
@@ -17,7 +17,8 @@ class Main extends Component {
             backgroundURL: '',
             coords: {},
             city: '',
-            weatherData: {}
+            weatherData: {},
+            forecastData: {}
         }
     }  
 
@@ -39,6 +40,7 @@ class Main extends Component {
 
         
         this.getWeather(city);
+        this.getForecast(city);
     }
 
     getWeather = async (city) => {
@@ -46,6 +48,13 @@ class Main extends Component {
 
         let weatherData = response.data;
         this.setState({weatherData})
+    }
+
+    getForecast = async (city) => {
+        let response = await forecast(city);
+
+        let forecastData = response.data;
+        this.setState({forecastData})
     }
 
     showPosition = (position) => {        
@@ -74,7 +83,7 @@ class Main extends Component {
     render(){
         return (
             <main className="main" style={{background: `url(${this.state.backgroundURL})`}}>
-                {Object.keys(this.state.weatherData).length ? <Prediction weather={this.state.weatherData}/> : <div>Carregando...</div>} 
+                {(Object.keys(this.state.weatherData).length && Object.keys(this.state.forecastData).length) ? <Prediction forecast={this.state.forecastData} weather={this.state.weatherData}/> : <div>Carregando...</div>} 
             </main>
         )
     }

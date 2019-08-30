@@ -5,8 +5,8 @@
     &__title {
         font-size: 3em;
         margin: 0;
-        background: #999;
-        color: #eee;
+        background: #f0ebe8;
+        color: #7e7b7a;
         text-align: center;
         display: flex;
         justify-content: center;
@@ -19,7 +19,7 @@
             font-size: 2em;
             font-style: normal;
             margin-right: 40px;
-            color: #ffffff;
+            color: #7e7b7a;
             content: attr(data-icon);
         }
     }
@@ -45,14 +45,25 @@
             height: calc(60% - 60px); // 60px is sum of padding top bottom from three items
         }
 
+        &--box {
+            width: 400px;
+            line-height: 30px;
+            font-size: 2em;
+
+            h5 {margin: 0}
+        }
+
         &-tomorrow {
             height: 20%;
+            justify-content: flex-end;
         }
 
         &-aftertomorrow {
             height: 20%;
+            justify-content: flex-end;
         }
     }
+    
 
     &__icon {
         max-width: 50%;

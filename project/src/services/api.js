@@ -36,3 +36,14 @@ export const opencage = async ({...position}) => {
         console.error('Não foi possível acessar a api opencage')
     }
 }
+
+
+export const forecast = async (city) => {
+    try {
+        let response = await axios.get(`${isLocalhost()}http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=8bba5801cd1f62ccf6a1c82c45bfdbec&cnt=3&units=metric`)
+        return response
+    } catch(error){
+        console.error('Não foi possível acessar a api forecast')
+    }
+    
+}
