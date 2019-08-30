@@ -31,3 +31,4 @@ cada caractere é um ícone, ou seja, estou printando 3 ícones ao invés de 1.
 
 Sobre estilos eu usei sass pela maior familiaridade, espero que não me faça perder pontos. :)
 
+
