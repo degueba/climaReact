@@ -1,16 +1,17 @@
 .prediction {
-    background: #eee;
     width: calc(100% - 40%);
     height: 100vh;
 
     &__title {
         font-size: 3em;
         margin: 0;
-        color: #999;
+        background: #999;
+        color: #eee;
         text-align: center;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 10px 0;
         
 
         .icon:before {
@@ -24,11 +25,12 @@
     }
 
     &__list {
+        flex: 1;
         position: relative;
         list-style: none;
-        padding: 10px 0;
-        background: #cccccc;
-
+        margin: 0;
+        padding-left: 0;
+        height: calc(100% - 120px); // total height of screen minus height header
     }
 
     &__item {
@@ -36,31 +38,49 @@
         justify-content: space-between;
         align-items: center;
         padding: 10px 40px;
+        color: #ffffff;
+        font-weight: bold;
         
         &-today {
-            background-color: rgba()
+            height: calc(60% - 60px); // 60px is sum of padding top bottom from three items
         }
 
         &-tomorrow {
+            height: 20%;
         }
 
         &-aftertomorrow {
+            height: 20%;
         }
     }
 
     &__icon {
-        .icon:before {
-            font-family: 'MeteoconsRegular';
-            font-size: 20em;
-            font-style: normal;
-            color: #ffffff;
-            content: attr(data-icon);
+        max-width: 50%;
+
+        .icon {
+            &:before {
+                font-family: 'MeteoconsRegular';
+                font-size: 12rem;
+                font-style: normal;
+                color: #ffffff;
+                content: attr(data-icon);
+            }
         }
     }
 
     &__info {
-        width: 200px;
+        width: 400px;
         color: #ffffff;
-        ul {list-style: none; padding-left: 0;}
+        font-size: 2em;
+        
+        &-title {
+            margin: 0;
+        }
+
+        &-list {
+            margin: 40px 0;
+            list-style: none; padding-left: 0;
+        }
+        
     }
 }

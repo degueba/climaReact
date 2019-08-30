@@ -17,23 +17,24 @@ class Prediction extends Component {
     }
 
     tempColor(temp, opacity = .7){
-        let color = `rgba(0, 255, 255, ${opacity})`;
+        let color = `168,168,168,0.3`; // cinza
 
         if(temp < 15){
-            color = `rgba(255, 0, 255, ${opacity})`;
+            color = `0,127,255${opacity && `,${opacity}`}`; // blue to weather cold
         } else if(temp > 35){
-            color = `rgba(0, 255, 255, ${opacity})`;
+            color = `255,0,0${opacity && `,${opacity}`}`; // red to weather hot 
         } else if(temp > 15 && temp < 35){
-            color = `rgba(255, 255, 0, ${opacity})`;
+            color = `251, 207, 68${opacity && `,${opacity}`}`; // yellow to comfortable temperature 
         }       
         
+        console.log(color);
         return color;
     }
 
     render() {
-        console.log(this.props)
-        let {weather: {name, main: {temp, pressure, humidity}, wind: {speed}, weather}} = this.props;
-
+        let {weather: {name, main: {temp, pressure, humidity}, wind: {speed}, weather:insideWeather}} = this.props;
+        let {id, main, description, icon} = insideWeather[0]
+       
         return (
             <div className="prediction">
                 <h1 className="prediction__title">
@@ -41,35 +42,38 @@ class Prediction extends Component {
                     <span>{name}</span>
                 </h1>
                 <ul className="prediction__list">
-                    <li className="prediction__item prediction__item-today">
+                    <li className="prediction__item prediction__item-today" style={{background: `rgba(${this.tempColor(temp)})`}}>
                         <div className="prediction__icon">
                             <span>
-                                <i className="icon" data-icon="A"></i>
+                                <i className="icon" data-icon={icon.toUpperCase()}></i>
                             </span>
                         </div>
-                        <div  className="prediction__info">
-                            <h5>HOJE</h5>
+                        <div className="prediction__info">
+                            <h5 className="prediction__info-title">HOJE</h5>
                             <span>{this.formatTemp(temp)}</span>
-                            <ul>
+                            <ul className="prediction__info-list">
+                                <li>
+                                    {insideWeather.main}
+                                </li>
                                 <li>
                                     <span>Vento:</span>
-                                    <b>{ speed } km/h</b>
+                                    <b> { speed } km/h</b>
                                 </li>
                                 <li>
                                     <span> Umidade: </span>
-                                    <b>{ humidity }%</b>
+                                    <b> { humidity }%</b>
                                 </li>
                                 <li>
                                     <span> Pressão: </span>
-                                    <b>{ pressure }hpa</b>
+                                    <b> { pressure }hpa</b>
                                 </li>
                             </ul>  
                         </div>
                     </li>
-                    <li className="prediction__item prediction__item-tomorrow">
+                    <li className="prediction__item prediction__item-tomorrow" style={{background: `rgba(${this.tempColor(temp, 1)})`}}>
                         <h5>Amanhã</h5>
                     </li>
-                    <li className="prediction__item prediction__item-aftertomorrow">
+                    <li className="prediction__item prediction__item-aftertomorrow" style={{background: `rgba(${this.tempColor(temp)})`}}>
                         <h5>Depois de amanhã</h5>
                     </li>
                 </ul>
