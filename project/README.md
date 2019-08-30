@@ -35,3 +35,8 @@ cada caractere é um ícone, ou seja, estou printando 3 ícones ao invés de 1.
 
 Sobre estilos eu usei sass pela maior familiaridade, espero que não me faça perder pontos. :)
 
+
+Usei a metodologia BEM para estilos
+https://en.bem.info/
+https://www.maujor.com/tutorial/metodologia-bem-para-criar-codigo-legivel.php
+
